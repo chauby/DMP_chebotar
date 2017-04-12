@@ -41,7 +41,7 @@ vector<double> LWRLearningSystem::learnApproximator(LWRApproximatorDiscrete& fun
 	double old_time = trajectory[0].getTime();  // Set start time to the first trajectory state
 
 	// Iterate over DMP state sequence
-    for(int i = 1; i < trajectory.size(); i++)
+	for(int i = 1; i < trajectory.size(); i++)
 	{
 		DMPState state = trajectory[i];
 
