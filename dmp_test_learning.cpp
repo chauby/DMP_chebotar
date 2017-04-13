@@ -142,7 +142,7 @@ int main(void)
 
 	/* ===================change goal state of swing leg===================== */
 	DMPState startStateSwingX(trajectorySwingX[0].getX(), trajectorySwingX[0].getXd(),trajectorySwingX[0].getXdd());
-	DMPState goalStateSwingX(trajectorySwingX[trajectorySwingX.size()-1].getX() - 0.1,
+	DMPState goalStateSwingX(trajectorySwingX[trajectorySwingX.size()-1].getX() - 0.3,
 				trajectorySwingX[trajectorySwingX.size()-1].getXd(),
 				trajectorySwingX[trajectorySwingX.size()-1].getXdd());
 	dmpSwingX.resetDmp();
@@ -150,7 +150,7 @@ int main(void)
 	usleep(1000);
 
 	DMPState startStateSwingZ(trajectorySwingZ[0].getX(),trajectorySwingZ[0].getXd(),trajectorySwingZ[0].getXdd());
-	DMPState goalStateSwingZ(trajectorySwingZ[trajectorySwingZ.size()-1].getX()+0.02,
+	DMPState goalStateSwingZ(trajectorySwingZ[trajectorySwingZ.size()-1].getX(),
 				trajectorySwingZ[trajectorySwingZ.size()-1].getXd(),
 				trajectorySwingZ[trajectorySwingZ.size()-1].getXdd());
 	dmpSwingZ.resetDmp();
@@ -159,7 +159,7 @@ int main(void)
 
 	/* ===================change goal state of support leg===================== */
 	DMPState startStateSupportX(trajectorySupportX[0].getX(), trajectorySupportX[0].getXd(),trajectorySupportX[0].getXdd());
-	DMPState goalStateSupportX(trajectorySupportX[trajectorySupportX.size()-1].getX() + 0.05,
+	DMPState goalStateSupportX(trajectorySupportX[trajectorySupportX.size()-1].getX() + 0.3,
 				trajectorySupportX[trajectorySupportX.size()-1].getXd(),
 				trajectorySupportX[trajectorySupportX.size()-1].getXdd());
 	dmpSupportX.resetDmp();
@@ -167,7 +167,7 @@ int main(void)
 	usleep(1000);
 
 	DMPState startStateSupportZ(trajectorySupportZ[0].getX(),trajectorySupportZ[0].getXd(),trajectorySupportZ[0].getXdd());
-	DMPState goalStateSupportZ(trajectorySupportZ[trajectorySupportZ.size()-1].getX() - 0.02,
+	DMPState goalStateSupportZ(trajectorySupportZ[trajectorySupportZ.size()-1].getX(),
 				trajectorySupportZ[trajectorySupportZ.size()-1].getXd(),
 				trajectorySupportZ[trajectorySupportZ.size()-1].getXdd());
 	dmpSupportZ.resetDmp();
