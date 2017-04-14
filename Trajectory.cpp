@@ -81,7 +81,8 @@ void load_trajectory_pvat(const char* file_name,vector<DMPState>& trajectory)
 	FILE* f = fopen(file_name, "rt");
 	if(f==NULL)
 	{
-		printf("文件不存在\n");
+		cout << "文件" << file_name << "不存在" << endl;
+		return;
 	}
 	char line[1000];
 	int i = 0;
@@ -105,19 +106,20 @@ void load_trajectory_pvat(const char* file_name,vector<DMPState>& trajectory)
  * @param[out] trajectory 轨迹文件中只记录了位置
  * @param[in] dt 采样周期
  */
-void load_trajectory_pt(const char* file_name,vector<DMPState>& trajectory)
+int load_trajectory_pt(const char* file_name,vector<DMPState>& trajectory)
 {
 	FILE* f = fopen(file_name, "rt");
 
 	if(f==NULL)
 	{
-		printf("文件不存在\n");
+		cout << "文件" << file_name << "不存在" << endl;
+		return 0;
 	}
 
 	DMPState state;
 	double x,xd,xdd,time;
 	char line[1000];
-	int i = 0;
+	int lineNum = 0;
 
 	//先输入所有的x
 	while(fgets(line, 1000, f) != NULL)
@@ -126,7 +128,7 @@ void load_trajectory_pt(const char* file_name,vector<DMPState>& trajectory)
 		state.setX(x);
 		state.setTime(time);
 		trajectory.push_back(state);
-		i++;
+		lineNum++;
 	}
 
 	//只针对中间点进行操作,计算速度与加速度
@@ -159,6 +161,8 @@ void load_trajectory_pt(const char* file_name,vector<DMPState>& trajectory)
 	iter =  trajectory.end()-1;
 	iter->setXd((iter-1)->getXd());
 	iter->setXdd((iter-1)->getXdd());
+
+	return lineNum;//返回轨迹点数
 }
 
 /**
@@ -172,7 +176,8 @@ void load_trajectory_p(const char* file_name,vector<DMPState>& trajectory,double
 	FILE* f = fopen(file_name, "rt");
 	if(f==NULL)
 	{
-		printf("文件不存在\n");
+		cout << "文件" << file_name << "不存在" << endl;
+		return;
 	}
 
 	DMPState state;
@@ -227,7 +232,8 @@ void save_trajectory(const char* file_name,vector<DMPState>& trajectory)
 	FILE* f = fopen(file_name, "w+");
 	if(f==NULL)
 	{
-		printf("无法创建文件");
+		cout << "无法创建文件" << file_name << endl;
+		return;
 	}
 	std::vector<DMPState>::iterator iter = trajectory.begin();
 	for(;iter!=trajectory.end();++iter)

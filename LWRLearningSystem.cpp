@@ -11,7 +11,7 @@ namespace dmp{
 LWRLearningSystem::LWRLearningSystem (TransformationSystem* trans_sys, CanonicalSystem* canonical_sys):
 			trans_sys(trans_sys), canonical_sys(canonical_sys)
 {
-	file_ = fopen("learnfile","w+");
+	// file_ = fopen("learnfile","w+");
 }
 
 /**
@@ -52,11 +52,11 @@ vector<double> LWRLearningSystem::learnApproximator(LWRApproximatorDiscrete& fun
 
 		// Get required canonical state
 		double canonical_state = canonical_sys->getCanonicalState();
-                state.setCanonicalState(canonical_state);
+	             state.setCanonicalState(canonical_state);
 
 		// Compute desired force value for this state
 		F_target[i] = trans_sys->getDesiredForcingTerm(state, start_state, goal_state, tau);
-		fprintf(file_, "%lf\n",F_target[i]);
+		// fprintf(file_, "%lf\n",F_target[i]);
 		// Compute basis function contributions at the current canonical state
 		vector<double> basis_functions = func_approx.getBasisFunctionVector(canonical_state);
                 Phi.row(i) = Eigen::VectorXd::Map(&basis_functions[0], basis_functions.size());
@@ -90,7 +90,7 @@ Eigen::MatrixXd LWRLearningSystem::pseudoInverse(const Eigen::MatrixXd &a)
 
 LWRLearningSystem::~LWRLearningSystem()
 {
-	fclose(file_);
+	// fclose(file_);
 }
 
 }

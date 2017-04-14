@@ -25,7 +25,7 @@ void load_trajectory_pvat(const char* file_name,vector<DMPState>& trajectory);
  * @param trajectory 轨迹文件中只记录了位置
  * @param dt 采样周期
  */
-void load_trajectory_pt(const char* file_name,vector<DMPState>& trajectory);
+int load_trajectory_pt(const char* file_name,vector<DMPState>& trajectory);
 
 /**
  * @brief 载入轨迹,格式:P

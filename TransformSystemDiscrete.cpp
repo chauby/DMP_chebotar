@@ -12,7 +12,7 @@ namespace dmp
  */
 TransformSystemDiscrete::TransformSystemDiscrete(double alpha, double beta) : alpha(alpha), beta(beta)
 {
-	file_ = fopen("fileT","w+");
+	// file_ = fopen("fileT","w+");
 }
 
 /**
@@ -47,7 +47,7 @@ DMPState TransformSystemDiscrete::getNextState(DMPState& current_state, DMPState
         + alpha * forcing_term + spatial_coupling) / (tau * tau)
     );
 
-	fprintf(file_,"%lf\n",forcing_term);
+	// fprintf(file_,"%lf\n",forcing_term);
     next_state.setXd(current_state.getXd() + next_state.getXdd() * dt);
     next_state.setX(current_state.getX() + next_state.getXd() * dt);
     //next_state.setTime(current_state.getTime() + dt);
@@ -77,13 +77,13 @@ double TransformSystemDiscrete::getDesiredForcingTerm(DMPState& state, DMPState&
     // Hoffman et al., Pastor et al. ICRA 2009 formulation
     double fdesired = (tau * tau * state.getXdd() + beta * tau * state.getXd()) / alpha
             - (goal_state.getX() - state.getX()) + amplitude * state.getCanonicalState();
-	fprintf(file_,"%lf\n",fdesired);
+	// fprintf(file_,"%lf\n",fdesired);
     return fdesired;
 }
 
 TransformSystemDiscrete::~TransformSystemDiscrete()
 {
-	fclose(file_);
+	// fclose(file_);
 }
 
 }
