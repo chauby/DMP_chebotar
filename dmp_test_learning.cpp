@@ -281,6 +281,7 @@ int test_main2(void)
 
 	/* ===================reproduce the trajectory===================== */
 	double dt = 0.01003;
+	double scaleT = 0.01003/dt;
 	DMPState currentState;
 	DMPState startStateSwingX(trajectorySwingX[0].getX(), trajectorySwingX[0].getXd(),trajectorySwingX[0].getXdd());
 	DMPState goalStateSwingX(trajectorySwingX[trajectorySwingX.size()-1].getX(),
@@ -289,7 +290,7 @@ int test_main2(void)
 	pDmpSwingX->resetDmp();
 	DMPSetStartAndGoalState(pDmpSwingX, startStateSwingX, goalStateSwingX);
 	FILE* foutput = fopen("dmpFiles/swing_x_output_trajectory.txt", "w+");
-	for(int i = 0; i < trajectorySwingXNum; i++)
+	for(int i = 0; i < trajectorySwingXNum*scaleT; i++)
 	{
 		currentState = pDmpSwingX->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -304,7 +305,7 @@ int test_main2(void)
 	pDmpSwingZ->resetDmp();
 	DMPSetStartAndGoalState(pDmpSwingZ, startStateSwingZ, goalStateSwingZ);
 	foutput = fopen("dmpFiles/swing_z_output_trajectory.txt", "w+");
-	for(int i = 0; i < trajectorySwingZNum; i++)
+	for(int i = 0; i < trajectorySwingZNum*scaleT; i++)
 	{
 		currentState = pDmpSwingZ->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -319,7 +320,7 @@ int test_main2(void)
 	pDmpSupportX->resetDmp();
 	DMPSetStartAndGoalState(pDmpSupportX, startStateSupportX, goalStateSupportX);
 	foutput = fopen("dmpFiles/support_x_output_trajectory.txt", "w+");
-	for(int i = 0; i < trajectorySupportXNum; i++)
+	for(int i = 0; i < trajectorySupportXNum*scaleT; i++)
 	{
 		currentState = pDmpSupportX->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -334,7 +335,7 @@ int test_main2(void)
 	pDmpSupportZ->resetDmp();
 	DMPSetStartAndGoalState(pDmpSupportZ, startStateSupportZ, goalStateSupportZ);
 	foutput = fopen("dmpFiles/support_z_output_trajectory.txt", "w+");
-	for(int i = 0; i < trajectorySupportZNum; i++)
+	for(int i = 0; i < trajectorySupportZNum*scaleT; i++)
 	{
 		currentState = pDmpSupportZ->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -350,7 +351,7 @@ int test_main2(void)
 	pDmpSwingX->resetDmp();
 	DMPSetStartAndGoalState(pDmpSwingX, startStateSwingX2, goalStateSwingX2);
 	foutput = fopen("dmpFiles/swing_x_trajectory_reproduced.txt", "w+");
-	for(int i = 0; i < trajectorySwingXNum; i++)
+	for(int i = 0; i < trajectorySwingXNum*scaleT; i++)
 	{
 		currentState = pDmpSwingX->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -365,7 +366,7 @@ int test_main2(void)
 	pDmpSwingZ->resetDmp();
 	DMPSetStartAndGoalState(pDmpSwingZ, startStateSwingZ2, goalStateSwingZ2);
 	foutput = fopen("dmpFiles/swing_z_trajectory_reproduced.txt", "w+");
-	for(int i = 0; i < trajectorySwingZNum; i++)
+	for(int i = 0; i < trajectorySwingZNum*scaleT; i++)
 	{
 		currentState = pDmpSwingZ->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -380,7 +381,7 @@ int test_main2(void)
 	pDmpSupportX->resetDmp();
 	DMPSetStartAndGoalState(pDmpSupportX, startStateSupportX2, goalStateSupportX2);
 	foutput = fopen("dmpFiles/support_x_trajectory_reproduced.txt", "w+");
-	for(int i = 0; i < trajectorySupportXNum; i++)
+	for(int i = 0; i < trajectorySupportXNum*scaleT; i++)
 	{
 		currentState = pDmpSupportX->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
@@ -395,7 +396,7 @@ int test_main2(void)
 	pDmpSupportZ->resetDmp();
 	DMPSetStartAndGoalState(pDmpSupportZ, startStateSupportZ2, goalStateSupportZ2);
 	foutput = fopen("dmpFiles/support_z_trajectory_reproduced.txt", "w+");
-	for(int i = 0; i < trajectorySupportZNum; i++)
+	for(int i = 0; i < trajectorySupportZNum*scaleT; i++)
 	{
 		currentState = pDmpSupportZ->getNextState(dt, true);
 		fprintf(foutput, "%.7f %.7f %.7f %.7f\n", currentState.getTime(),currentState.getX(),currentState.getXd(),currentState.getXdd());
